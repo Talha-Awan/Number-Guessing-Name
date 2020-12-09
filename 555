@@ -1,0 +1,29 @@
+file=Talha/task4/555.txt
+if test -f $file
+then
+	echo "File is present!"
+	echo "Lets Starts!"
+else
+	touch /etc/Talha/task4/555.txt
+fi
+rndFile=$(ls /etc/Talha/task4)
+rndFile="${rndFile%.*}"
+gdate=$(date | awk '{print $5}')
+gdate=10#$gdate
+echo $gdate
+rndnum=$((rndFile*gdate))
+echo $rndnum
+echo $rndnum > /etc/Talha/task4/$rndFile.txt
+for i in {1..10}
+do
+	echo "Input Number: "
+	read usernum
+	if test $usernum = $rndnum
+	then
+		echo "Hurray! You guessed right!"
+		exit 1
+	else
+		rmattempts=$((10-$i))	
+		echo "Oooo! You guessed wrong! You have $rmattempts remaining!"
+	fi
+done
